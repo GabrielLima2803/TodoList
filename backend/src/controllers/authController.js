@@ -70,5 +70,29 @@ async function loginUser(req, res){
         console.error(error);
         res.status(500).json({msg: 'Erro interno do servidor'})
     }
+}
 
+async function forgotPassword(req, res) {
+    try {
+      await authService.forgotPasswordService(req, res);
+    } catch (error) {
+      console.error('Erro ao enviar e-mail:', error);
+      res.status(500).json({ error: 'Erro ao enviar e-mail de recuperação de senha.' });
+    }
+  }
+  
+  async function resetPassword(req, res) {
+    try {
+      await authService.resetPasswordService(req, res);
+    } catch (error) {
+      console.error('Erro ao redefinir senha:', error);
+      res.status(500).json({ error: 'Erro ao redefinir a senha.' });
+    }
+  }
+
+module.exports = {
+    registerUser,
+    loginUser,
+    resetPassword,
+    forgotPassword,
 }
