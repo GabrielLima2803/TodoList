@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const Task = require('../models/Task');
+const taskService = require('../services/taskService')
 
 async function addTask(req, res) {
   const { name, description, term, isCompleted } = req.body;
@@ -64,8 +65,28 @@ async function updateTask(req, res) {
 }
 
 
+async function buscarPorName(req, res) {
+  const userId = req.user.id;
+  const nome = req.params.name; 
+  
+  try {
+      const taskEncontradas = await taskService.buscarTaskPorUsuario(userId, nome);
+      console.log(`Tarefas encontradas - ${taskEncontradas}`);
+  
+      if (!taskEncontradas || taskEncontradas.length === 0) {
+          return res.status(404).send('Nenhuma tarefa encontrada para o usuário atual com o nome fornecido.');
+      }
+  
+      return res.send(taskEncontradas);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, error: 'Erro durante a busca de tarefas por usuário e nome.' });
+  }
+}
+
 module.exports = {
     addTask,
     getTask,
     updateTask,
+    buscarPorName,
 }
