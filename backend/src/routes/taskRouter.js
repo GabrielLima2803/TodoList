@@ -7,6 +7,7 @@ const router = express.Router();
 router.post('/add-task', checkToken, taskController.addTask);
 router.get('/get-task', checkToken, taskController.getTask);
 router.put('/put-task/:_id', checkToken, taskController.updateTask);
+router.get('/filter/:name', checkToken, taskController.buscarPorName)
 
 
 
