@@ -9,7 +9,7 @@
   height: 300px;
   width: 300px;
   box-shadow: 0px 3px 50px #A5A5A5;
-  margin: 10px; /* Adicionando margem para espaçamento entre os cards */
+  margin: 10px;
 }
 
 .card-wrapper {
