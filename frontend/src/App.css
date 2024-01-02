@@ -1,7 +1,7 @@
 .header{
   height: 200px;
   width: 100%;
-  background-color : #E9EEF6;
+  background-color : #dfe5f0;
   padding-top: 50px;
 }
 
@@ -52,4 +52,23 @@
   background-color: #F6F7F8;
   padding: 40px;
   justify-content: space-around; 
+}
+
+.footer {
+  background-color : #dfe5f0;
+  color: #050505; 
+  padding: 13px; 
+  position: fixed; 
+  width: 100%;
+  bottom: 0;
+  text-align: center; 
+}
+
+.footer h5 {
+  margin-bottom: 10px; 
+}
+
+.footer h6 {
+  font-style: italic; 
+  cursor: pointer;
 }
