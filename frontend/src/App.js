@@ -1,15 +1,14 @@
 import './App.css';
-import TodoList from './components/TodoList'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import Footer from './components/Footer';
+import AppRouter from './router/AppRouter';
+
 
 
 function App() {
   return (
     <div className="App">
-      <TodoList />
-      <Footer/>
+      <AppRouter />
     </div>
   );
 }
