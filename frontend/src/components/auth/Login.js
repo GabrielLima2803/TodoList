@@ -24,7 +24,7 @@ const Login = () => {
               id="floatingInput"
               placeholder="Senha"
             />
-            <label htmlFor="password" for="floatingInput">
+            <label for="floatingInput">
               Senha
             </label>
           </div>
