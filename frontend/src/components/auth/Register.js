@@ -2,6 +2,7 @@ import React from "react";
 import "./auth.css";
 import { Link } from "react-router-dom";
 
+
 const Register = () => {
   return (
     <div className="login-container">
@@ -24,9 +25,7 @@ const Register = () => {
               id="floatingInput"
               placeholder="Email"
             />
-            <label htmlFor="floatingInput">
-              Email
-            </label>
+            <label htmlFor="floatingInput">Email</label>
           </div>
           <div className="container-pass container-def form-floating">
             <input
@@ -35,9 +34,7 @@ const Register = () => {
               id="floatingInput"
               placeholder="Senha"
             />
-            <label htmlFor="floatingInput">
-              Senha
-            </label>
+            <label htmlFor="floatingInput">Senha</label>
           </div>
           <div className="container-pass container-def form-floating">
             <input
@@ -46,19 +43,14 @@ const Register = () => {
               id="floatingInput"
               placeholder="Confirma Senha"
             />
-            <label htmlFor="floatingInput">
-              Confirmar Senha
-            </label>
+            <label htmlFor="floatingInput">Confirmar Senha</label>
           </div>
           <button type="submit" className="button-entrar">
             Registrar
           </button>
           <div className="links">
-            <Link className="forgot-password-link" to="/forgot-password">
-              <div>Esqueci Senha?</div>
-            </Link>
-            <Link className="register-link" to="/login">
-              <div>Não tem conta? Login</div>
+            <Link className="register-link mt-3" to="/login">
+              Já tem uma conta?
             </Link>
           </div>
         </form>
