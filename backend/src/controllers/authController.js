@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const authService = require('../services/authService');
+const cookie = require('cookie');
 
 async function registerUser(req, res) {
     const { name, email, password, confirmPassword } = req.body;
@@ -59,7 +60,13 @@ async function loginUser(req, res) {
       }
   
       const secret = process.env.SECRET;
-      const token = authService.generateToken(user._id, secret);      
+      const token = authService.generateToken(user._id, secret); 
+      res.setHeader('Set-Cookie', cookie.serialize('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production', 
+        maxAge: 3600, 
+        sameSite: 'lax',
+      }));     
       res.status(201).json({ msg: 'Usuário logado com sucesso', token, user: { name: user.name, email: user.email } });
     } catch (error) {
       console.error(error);
