@@ -60,8 +60,7 @@ async function loginUser(req, res) {
   
       const secret = process.env.SECRET;
       const token = authService.generateToken(user._id, secret);      
-  
-      res.status(201).json({ msg: 'Usuário logado com sucesso', token });
+      res.status(201).json({ msg: 'Usuário logado com sucesso', token, user: { name: user.name, email: user.email } });
     } catch (error) {
       console.error(error);
       res.status(500).json({ msg: 'Erro interno do servidor' });
