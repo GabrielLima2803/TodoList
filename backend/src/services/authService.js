@@ -44,7 +44,7 @@ async function forgotPasswordService(req, res) {
 
     const code = Math.floor(100000 + Math.random() * 900000).toString();
     const expiration = new Date();  
-    expiration.setMinutes(expiration.getMinutes() + 15);  // Expira em 15 minutos
+    expiration.setMinutes(expiration.getMinutes() + 15); 
     const htmlTemplate = await fs.readFile(path.join(__dirname, '../email/email.html'), 'utf-8');
     const formattedHtml = htmlTemplate.replace('${code}', code);
     await ResetCode.create({ email, code, expiration });
