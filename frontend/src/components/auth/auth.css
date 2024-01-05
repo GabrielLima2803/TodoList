@@ -79,3 +79,13 @@ body {
     flex-direction: column;
     text-align: center;
 }
+.success-message{
+  color: rgb(0, 116, 19);
+}
+
+.error-message{
+  color: red;
+}
+.hidden {
+  display: none;
+}
