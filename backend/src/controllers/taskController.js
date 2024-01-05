@@ -3,7 +3,7 @@ const Task = require('../models/Task');
 const taskService = require('../services/taskService')
 
 async function addTask(req, res) {
-  const { name, description, term, isCompleted } = req.body;
+  const { name, description} = req.body;
   console.log(req.user);
   console.log(req.user.name);
   console.log(req.user.id);
@@ -15,8 +15,6 @@ async function addTask(req, res) {
       const newTask = new Task({
           name,
           description,
-          term,
-          isCompleted,
       });
       console.log(`New Task: ${newTask}`)
       await newTask.save();
