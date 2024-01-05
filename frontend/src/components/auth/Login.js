@@ -1,16 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./auth.css";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const storedToken = localStorage.getItem("authToken");
+  const storedUserInfo = localStorage.getItem("userInfo");
+
+  const initialUser = storedUserInfo ? JSON.parse(storedUserInfo) : { name: "" };
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    user: { name: "" },
+    user: initialUser,
   });
 
   const [error, setError] = useState(null);
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(!!storedToken);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("authToken");
+    const storedUserInfo = localStorage.getItem("userInfo");
+
+    if (storedToken && storedUserInfo) {
+      setFormData({
+        ...formData,
+        user: JSON.parse(storedUserInfo),
+      });
+      setLoggedIn(true);
+    }
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,6 +52,10 @@ const Login = () => {
         setError(null);
         console.log("Usuário logado com sucesso. Token:", responseData.token);
         console.log("Usuário:", responseData.user);
+
+        localStorage.setItem("authToken", responseData.token);
+        localStorage.setItem("userInfo", JSON.stringify(responseData.user));
+
         setFormData((prevData) => ({
           ...prevData,
           user: responseData.user,
@@ -45,6 +67,12 @@ const Login = () => {
     } catch (error) {
       setError("Erro ao fazer a requisição. Tente novamente mais tarde.");
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userInfo");
+    setLoggedIn(false);
   };
 
   return (
@@ -91,7 +119,12 @@ const Login = () => {
       {isLoggedIn && (
         <div className="user-info">
           <h1>Bem-vindo, {formData.user.name}!</h1>
-          {/* Adicione outras informações do usuário conforme necessário */}
+          <Link to="/" className="reset">
+          <h3 className="text-center mt-2 mb-3">Anote Suas Tarefas</h3>
+          </Link>
+          <div className="btn-logout">
+          <button onClick={handleLogout} className="btn btn-primary">Logout</button>
+          </div>
         </div>
       )}
     </div>
