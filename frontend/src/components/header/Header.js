@@ -5,17 +5,17 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <div id="headerTop">
-      <div class="house">
+      <div className="house">
         <Link to="/">
-          <i class="bi bi-house-door color-house"></i>
+          <i className="bi bi-house-door color-house"></i>
         </Link>
       </div>
       <div>
       </div>
-      <div class="linksTop">
-        <Link to="/login" class="text-black text">
-          <span class="borde-Ultimo">
-            <i class="bi bi-person"></i>
+      <div className="linksTop">
+        <Link to="/login" className="text-black text">
+          <span className="borde-Ultimo">
+            <i className="bi bi-person"></i>
           </span>
         </Link>
       </div>
