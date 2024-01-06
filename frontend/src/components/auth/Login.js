@@ -72,6 +72,7 @@ const Login = () => {
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("userInfo");
+    localStorage.removeItem("taskList");
     setLoggedIn(false);
   };
 
