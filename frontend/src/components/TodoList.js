@@ -8,6 +8,8 @@ const TodoList = () => {
   const [modal, setModal] = useState(false);
   const [taskList, setTaskList] = useState([]);
   const [authToken, setAuthToken] = useState(null);
+  const [isLoggedIn, setLoggedIn] = useState(false); 
+
 
   useEffect(() => {
     const storedToken = localStorage.getItem('authToken');
@@ -15,6 +17,7 @@ const TodoList = () => {
     if (storedToken) {
       setAuthToken(storedToken);
       getTasks();
+      setLoggedIn(true); 
     }
     let arr = localStorage.getItem('taskList');
 
@@ -22,7 +25,7 @@ const TodoList = () => {
       let obj = JSON.parse(arr);
       setTaskList(obj);
     }
-  }, []);
+  }, [isLoggedIn]);
 
   const toggle = () => {
     setModal(!modal);
