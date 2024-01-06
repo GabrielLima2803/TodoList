@@ -42,12 +42,12 @@ async function getTask(req, res){
 
 async function updateTask(req, res) {
   const taskId = req.params._id;
-  const { name, description, term, isCompleted } = req.body;
+  const { name, description} = req.body;
 
   try {
     const updatedTask = await Task.findByIdAndUpdate(
       taskId,
-      { name, description, term, isCompleted },
+      { name, description },
       { new: true }
     );
 
@@ -82,9 +82,32 @@ async function buscarPorName(req, res) {
   }
 }
 
+async function deleteTask(req, res) {
+  const taskId = req.params._id;
+
+  try {
+    const deletedTask = await Task.findOneAndDelete({ _id: taskId });
+
+    if (!deletedTask) {
+      return res.status(404).json({ success: false, error: 'Tarefa não encontrada' });
+    }
+
+    const userId = req.user.id;
+    const user = await User.findById(userId);
+
+    user.Tasks.pull(taskId);
+    await user.save();
+
+    res.json({ success: true, task: deletedTask });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
+}
 module.exports = {
     addTask,
     getTask,
     updateTask,
     buscarPorName,
+    deleteTask,
 }
