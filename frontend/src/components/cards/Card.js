@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import EditTask from '../modals/EditTask';
 
 const Card = ({ taskObj, index, deleteTask, updateListArray }) => {
   const [modal, setModal] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      setModal(false);
+    };
+  }, []);
 
   const colors = [
     {
@@ -31,23 +37,26 @@ const Card = ({ taskObj, index, deleteTask, updateListArray }) => {
     setModal(!modal);
   };
 
-  const updateTask = (obj) => {
-    updateListArray(obj, index);
+  const updateTask = (updatedTask) => {
+    updateListArray(taskObj._id, index, updatedTask);
+    toggle();
   };
 
   const handleDelete = () => {
-    deleteTask(index);
+    deleteTask(index, taskObj._id);
   };
 
+  console.log("taskObj", taskObj);
   return (
     <div className="card-wrapper mr-5">
       <div className="card-top" style={{ "backgroundColor": colors[index % 5].primaryColor }}></div>
       <div className="task-holder">
-        <span className="card-header" style={{ "backgroundColor": colors[index % 5].secondaryColor, "borderRadius": "10px" }}>{taskObj.Name}</span>
-        <p className="mt-3">{taskObj.Description}</p>
+        <span className="card-header" style={{ "backgroundColor": colors[index % 5].secondaryColor, "borderRadius": "10px" }}>{taskObj.name}</span>
+        <p className="mt-3">{taskObj.description}</p>
 
         <div className="task-actions">
-          <i className="bi bi-pencil-square" style={{ "color": colors[index % 5].primaryColor }} onClick={() => setModal(true)}></i>
+          <i className="bi bi-pencil-square" style={{ "color": colors[index % 5].primaryColor }} onClick={toggle}></i>
+          {/* Aqui */}
           <i className="bi bi-trash" style={{ "color": colors[index % 5].primaryColor }} onClick={handleDelete}></i>
         </div>
       </div>
@@ -55,5 +64,6 @@ const Card = ({ taskObj, index, deleteTask, updateListArray }) => {
     </div>
   );
 };
+
 
 export default Card;
