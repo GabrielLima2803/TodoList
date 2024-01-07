@@ -8,7 +8,7 @@ const TodoList = () => {
   const [modal, setModal] = useState(false);
   const [taskList, setTaskList] = useState([]);
   const [authToken, setAuthToken] = useState(null);
-  const [isLoggedIn, setLoggedIn] = useState(false); 
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
 
   useEffect(() => {
