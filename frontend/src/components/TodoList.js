@@ -110,34 +110,40 @@ const updateListArray = async (taskId, index, updatedTask) => {
 
 
 
-  const saveTask = async (taskObj) => {
-    try {
-      console.log('Token enviado na requisição no metodo Save:', authToken); 
-      console.log()
-      const response = await fetch('http://localhost:3000/task/add-task', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${authToken}`,
-        },
-        body: JSON.stringify(taskObj),
-      });
+const saveTask = async (taskObj) => {
+  if (!taskObj.name.trim()) {
+    alert('Nome da tarefa não pode ser vazio')
+    console.error('Nome da tarefa não pode ser vazio');
+    return;
+  }
 
-      const responseData = await response.json();
+  try {
+    console.log('Token enviado na requisição no método Save:', authToken);
+    console.log();
+    const response = await fetch('http://localhost:3000/task/add-task', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authToken}`,
+      },
+      body: JSON.stringify(taskObj),
+    });
 
-      if (response.ok) {
-        let tempList = taskList;
-        tempList.push(responseData.task);
-        localStorage.setItem('taskList', JSON.stringify(tempList));
-        setTaskList(tempList);
-        setModal(false);
-      } else {
-        console.error(responseData.error || 'Erro interno do servidor');
-      }
-    } catch (error) {
-      console.error('Erro ao fazer a requisição. Tente novamente mais tarde.', error);
+    const responseData = await response.json();
+
+    if (response.ok) {
+      let tempList = taskList;
+      tempList.push(responseData.task);
+      localStorage.setItem('taskList', JSON.stringify(tempList));
+      setTaskList(tempList);
+      setModal(false);
+    } else {
+      console.error(responseData.error || 'Erro interno do servidor');
     }
-  };
+  } catch (error) {
+    console.error('Erro ao fazer a requisição. Tente novamente mais tarde.', error);
+  }
+};
 
   return (
     <>
