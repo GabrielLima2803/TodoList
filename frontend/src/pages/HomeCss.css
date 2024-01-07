@@ -1,0 +1,54 @@
+.home-background {
+    background-color: black;
+    color: white;
+    margin: 0;
+    height: 100vh; 
+  }
+  
+  .typed-text {
+    font-size: 2em;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0;
+    letter-spacing: 0.15em;
+    text-align: center;
+  }
+  
+  .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  .login-home {
+    text-align: center;
+    font-size: 28px;
+    cursor: pointer;
+  }
+  
+  .redes {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; 
+  }
+  
+  .redes a {
+    margin: 0 10px; 
+  }
+  
+  .icone:hover {
+    color: blueviolet;
+    transition: 0.7s ease-in-out;
+  }
+  
+  .mr-4 {
+    margin-right: 15px;
+  }
+  
+  .reset-1 {
+    color: white;
+  }
+  
