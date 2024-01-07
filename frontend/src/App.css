@@ -2,7 +2,7 @@
   height: 200px;
   width: 100%;
   background-color : #dfe5f0;
-  padding-top: 50px;
+  padding-top: 80px;
 }
 
 .card-container {
@@ -24,6 +24,11 @@
 .card-top {
   width: 100%;
   height: 2%;
+}
+.resetCode{
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .task-holder {
@@ -105,7 +110,8 @@
   top: 0;
   left: 0;
   right: 0;
-  padding: 10px; /* Adicionei um pouco de padding para melhor espaçamento */
+  padding: 10px; 
+  z-index: 999;
 }
 
 .house {
