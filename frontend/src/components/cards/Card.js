@@ -52,11 +52,10 @@ const Card = ({ taskObj, index, deleteTask, updateListArray }) => {
       <div className="card-top" style={{ "backgroundColor": colors[index % 5].primaryColor }}></div>
       <div className="task-holder">
         <span className="card-header" style={{ "backgroundColor": colors[index % 5].secondaryColor, "borderRadius": "10px" }}>{taskObj.name}</span>
-        <p className="mt-3">{taskObj.description}</p>
+        <p className="mt-3 p">{taskObj.description}</p>
 
         <div className="task-actions">
           <i className="bi bi-pencil-square" style={{ "color": colors[index % 5].primaryColor }} onClick={toggle}></i>
-          {/* Aqui */}
           <i className="bi bi-trash" style={{ "color": colors[index % 5].primaryColor }} onClick={handleDelete}></i>
         </div>
       </div>
